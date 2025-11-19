@@ -57,7 +57,7 @@ class CarWashStation:
         if car.clean_mark < self.clean_power:
             car.clean_mark = self.clean_power
 
-    def calculate_washing_profit(self, cars_to_clean: List[Car]) -> float:
+    def calculate_washing_income(self, cars_to_clean: List[Car]) -> float:
         """
         Calculates the total washing income for a group of cars that require
         cleaning. Each car's washing price is computed and the result is
@@ -67,10 +67,10 @@ class CarWashStation:
         :return: float - car wash station income for serve List[Car],
         rounded to 1 decimal
         """
-        profit = round(
+        income = round(
             sum(self.calculate_washing_price(car) for car in cars_to_clean), 1
         )
-        return profit
+        return income
 
     def wash_group_of_cars(self, cars_to_clean: List[Car]) -> None:
         """
@@ -87,7 +87,7 @@ class CarWashStation:
     def serve_cars(self, cars: List[Car]) -> float:
         """
         Serves a list of cars by selecting those that require washing,
-        calculating the total washing profit for them, and then washing
+        calculating the total washing income for them, and then washing
         each selected car. The total income is returned.
 
         :param cars: list of Car instances to be processed
@@ -97,10 +97,10 @@ class CarWashStation:
             car for car in cars
             if car.clean_mark < self.clean_power
         ]
-        profit = self.calculate_washing_profit(cars_to_clean)
+        income = self.calculate_washing_income(cars_to_clean)
         self.wash_group_of_cars(cars_to_clean)
 
-        return profit
+        return income
 
     def rate_service(self, new_rate: int) -> None:
         """
